@@ -1,0 +1,71 @@
+<html>
+  <head>
+  </head>
+  <body>
+
+    <p>
+      <a href="#"
+         class="addTokenLink"
+         data-contract="0xd00981105e61274c8a5cd5a88fe7e037d935b513"
+         data-symbol="TUT"
+         data-decimals="18"
+         data-image="http://placekitten.com/200/300"
+         >Add TUT to wallet</a>
+    </p>
+
+    <p>
+      <a href="#"
+         class="addTokenLink"
+         data-contract="0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
+         data-symbol="WBTC"
+         data-decimals="8"
+         data-image="http://placekitten.com/200/300"
+         >Add WBTC to wallet</a>
+    </p>
+
+    <script language="javascript" type="text/javascript">
+      function dummy(el) {
+        console.log("click", el);
+        addToken(el.target.dataset);
+      }
+
+      async function addToken(tokenData) {
+        console.log("addToken", tokenData);
+        const {
+          contract,
+          symbol,
+          decimals,
+          image,
+        } = tokenData;
+
+        // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+        const wasAdded = await ethereum.request({
+          method: 'wallet_watchAsset',
+          params: {
+            type: 'ERC20', // Initially only supports ERC20, but eventually more!
+            options: {
+              address: contract, // The address that the token is at.
+              symbol: symbol, // A ticker symbol or shorthand, up to 5 chars.
+              decimals: decimals, // The number of decimals in the token
+              image: image, // A string url of the token logo
+            },
+          },
+        });
+
+      }
+
+      if (window.ethereum) { // modern dapp browsers
+        window.ethereum.autoRefreshOnNetworkChange = false; // Silence a warning from Metamask
+      }
+
+      window.addEventListener('load', async () => {
+        const items = document.getElementsByClassName('addTokenLink');
+        for (var i = 0; i < items.length; i++) {
+          let el = items[i];
+          el.addEventListener('click', dummy);
+        }
+      });
+
+    </script>
+  </body>
+</html>
