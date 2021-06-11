@@ -1,21 +1,27 @@
 <html>
   <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   </head>
   <body>
-    <h1 id="networkName"></h1>
+    <div class="container">
+      <h1 class="display-4 fw-normal" id="networkName"></h1>
 
-    <table id="tokenList">
-      <thead>
-        <tr>
-          <th>&nbsp;</th>
-          <th>Token</th>
-          <th>Address</th>
-          <th>Decimals</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </ul>
+      <!-- tokens cards go inside here -->
+      <div class="row row-cols-4 gap-3" id="tokenCards"></div>
+
+      <table id="tokenList">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>Token</th>
+            <th>Address</th>
+            <th>Decimals</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        </ul>
+    </div>
 
     <script language="javascript" type="text/javascript" src="/lib/tokens.js"></script>
     <script language="javascript" type="text/javascript" src="/lib/addtokens.js"></script>
